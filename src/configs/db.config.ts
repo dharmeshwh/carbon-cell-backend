@@ -1,7 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { ConnectOptions } from "mongoose";
 
-const URI = `mongodb+srv://dharmeshoctober:nCGYwnRCF49kQn8M@cluster0.x3d6yvc.mongodb.net/`;
-
-export function configDb() {
-  return mongoose.connect(URI);
+export async function configDb() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI || "");
+    console.log("Connected to database");
+  } catch (error) {
+    console.error("Error connecting to database:", error);
+    throw error;
+  }
 }

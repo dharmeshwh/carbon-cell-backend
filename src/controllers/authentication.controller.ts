@@ -8,8 +8,6 @@ import { cookieName } from "../utils/extra";
 export class AuthController {
   async signup(request: Request, response: Response) {
     try {
-      console.log(request.body);
-
       const { firstname, lastname, email, password, username } = request.body;
 
       const isUserAlreadyExists = await UserModel.findOne({
